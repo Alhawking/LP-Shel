@@ -1,0 +1,31 @@
+<script runat="server">
+Platform.Load("Core","1.1.1");
+try{
+</script>
+
+%%[ VAR @fName,@lName,@email,@cp 
+   set @fName = RequestParameter('FirstName')
+   set @lName = RequestParameter('LastName')
+   set @email = RequestParameter('Email')
+   set @cp = RequestParameter('ZipCode')
+
+   IF not empty(@fName) THEN
+      Redirect(CloudPagesURL())
+     ELSE
+      
+     ENDIF
+
+]%%
+ 
+<script runat="server">
+}
+catch(e) {
+ Variable.SetValue("errorMessage", Stringify(e.message) + Stringify(e.description));
+ Write(Stringify(e));
+}
+</script>
+ 
+<script runat="client">
+console.log(`%%=v(@errorMessage)=%%`)
+console.log(`%%=v(@errorMessage)=%%`);
+</script>
